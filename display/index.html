@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-screen">
+    <section class="h-full flex flex-col">
+      <div
+        class="flex justify-between items-center w-full p-10 half-red-half-blue shadow-lg h-[500px]"
+      >
+        <div class="flex items-center gap-4">
+          <img
+            id="team1-logo"
+            src="/public/images/Logo.png"
+            alt="Logo"
+            width="180"
+            height="180"
+            class="p-2 w-36"
+          />
+          <h1
+            class="text-6xl font-bold bg-transparent text-slate-50 outline-none"
+            ,
+            id="team1-name"
+          >
+            CADT 02
+          </h1>
+        </div>
+        <div class="flex flex-col items-center text-slate-50">
+          <div class="text-5xl font-bold pb-2">Total Score</div>
+          <div class="text-9xl bg-black p-1" id="team1-total-score">00</div>
+        </div>
+        <div class="flex flex-col items-center text-slate-50">
+          <div class="text-5xl font-bold pb-2">Total Score</div>
+          <div class="text-9xl bg-black p-1" id="team2-total-score">00</div>
+        </div>
+        <div class="flex items-center gap-4">
+          <h1
+            class="text-6xl font-bold bg-transparent text-slate-50 outline-none"
+            ,
+            id="team2-name"
+          >
+            NUM 03
+          </h1>
+          <img
+            id="team2-logo"
+            src="/public/images/Logo.png"
+            alt="Logo"
+            width="180"
+            height="180"
+            class="p-2 w-36"
+          />
+        </div>
+      </div>
+      <div class="flex justify-center text-center">
+        <div
+          class="bg-red-500 h-[800px] w-full p-10 justify-center flex flex-col"
+        >
+          <div class="flex flex-col items-center gap-7">
+            <div class="flex gap-10 items-center justify-center mb-10">
+              <div class="text-9xl text-green-500">+15</div>
+              <div class="text-9xl text-white">:</div>
+              <div class="text-9xl bg-black p-1 text-white">00</div>
+            </div>
+            <div class="flex gap-10 items-center justify-center mb-10">
+              <div class="text-9xl text-green-500">+10</div>
+              <div class="text-9xl text-white">:</div>
+              <div class="text-9xl bg-black p-1 text-white">00</div>
+            </div>
+            <div class="flex gap-10 items-center justify-center">
+              <div class="text-9xl text-green-500 ml-5">+5</div>
+              <div class="text-9xl text-white">:</div>
+              <div class="text-9xl bg-black p-1 text-white">00</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-col justify-between text-center w-[1600px]">
+          <div
+            class="text-yellow-500 bg-black h-72 w-full text-center text-[180px] flex-col"
+          >
+            00:00
+          </div>
+          <div class="bg-gray-500 h-[512px] w-full flex flex-col text-center">
+            <div class="normal-font text-white text-9xl p-10">Period</div>
+            <div
+              class="text-orange-500 flex flex-col text-center items-center p-6"
+            >
+              <div class="text-9xl bg-black p-3 scale-150">00</div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-blue-500 h-[800px] w-full p-10 justify-center flex flex-col"
+        >
+          <div class="flex flex-col items-center gap-7">
+            <div class="flex gap-10 items-center justify-center mb-10">
+              <div class="text-9xl bg-black p-1 text-white">00</div>
+              <div class="text-9xl text-white">:</div>
+              <div class="text-9xl text-green-500">+15</div>
+            </div>
+            <div class="flex gap-10 items-center justify-center mb-10">
+              <div class="text-9xl bg-black p-1 text-white">00</div>
+              <div class="text-9xl text-white">:</div>
+              <div class="text-9xl text-green-500">+10</div>
+            </div>
+            <div class="flex gap-10 items-center justify-center">
+              <div class="text-9xl bg-black p-1 text-white">00</div>
+              <div class="text-9xl text-white">:</div>
+              <div class="text-9xl text-green-500 mr-5">+5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
