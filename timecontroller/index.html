@@ -8,50 +8,126 @@
     <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="h-screen">
-    <section class="h-full flex flex-col">
+  <body>
+    <section class="h-screen flex flex-col">
       <div
-        class="flex justify-between items-center w-full p-8 half-red-half-blue"
+        class="flex justify-between items-center w-full p-8 half-red-half-blue h-screen"
       >
         <div class="flex justify-between items-center w-full">
-          <form class="flex items-center gap-1">
-            <label class="block text-3xl font-medium text-white w-[300px]"
-              >Select a Team</label
+          <div class="flex-col flex">
+            <form class="flex items-center gap-1 p-2">
+              <label class="block text-3xl font-medium text-white w-[300px]"
+                >Select a Team</label
+              >
+              <select
+                id="redTeamSelect"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 normal-font"
+              >
+                <option selected>Choose a Team</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
+              </select>
+            </form>
+            <form class="flex items-center gap-1 p-2">
+              <label class="block text-3xl font-medium text-white w-[300px]"
+                >Select a Sides</label
+              >
+              <select
+                id="redTeamSelect"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 normal-font"
+              >
+                <option selected>Choose a Sides</option>
+                <option value="OFF" class="">OFFENSIVE</option>
+                <option value="DEF">DEFENSIVE</option>
+              </select>
+            </form>
+          </div>
+          <div class="flex-col flex">
+            <button
+              class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-black outline-solid outline-white outline mb-3"
+              onclick="setTeams()"
             >
-            <select
-              id="redTeamSelect"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 normal-font"
+              SET TEAM
+            </button>
+            <button
+              class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-black outline-solid outline-white outline"
+              onclick="setSites()"
             >
-              <option selected>Choose a Team</option>
-              <option value="US">United States</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
-            </select>
-          </form>
+              SET TEAM SIDES
+            </button>
+          </div>
 
-          <button
-            class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-black outline-solid outline-white outline"
-            onclick="setTeams()"
-          >
-            SET
-          </button>
-          <form class="flex items-center gap-1">
-            <label class="block text-3xl font-medium text-white w-[300px]"
-              >Select a Team</label
-            >
-            <select
-              id="blueTeamSelect"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 normal-font"
-            >
-              <option selected>Choose a Team</option>
-              <option value="US">United States</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
-            </select>
-          </form>
+          <div class="flex-col flex">
+            <form class="flex items-center gap-1 p-2">
+              <label class="block text-3xl font-medium text-white w-[300px]"
+                >Select a Team</label
+              >
+              <select
+                id="blueTeamSelect"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 normal-font"
+              >
+                <option selected>Choose a Team</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
+              </select>
+            </form>
+            <form class="flex items-center gap-1 p-2">
+              <label class="block text-3xl font-medium text-white w-[300px]"
+                >Select a Sides</label
+              >
+              <select
+                id="redTeamSelect"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 normal-font"
+              >
+                <option selected>Choose a Sides</option>
+                <option value="OFF" class="">OFFENSIVE</option>
+                <option value="DEF">DEFENSIVE</option>
+              </select>
+            </form>
+          </div>
         </div>
+      </div>
+      <div
+        class="flex items-center w-full p-10 half-red-half-blue h-screen text-4xl gap-6 justify-center"
+      >
+        <button
+          class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-black outline-solid outline-white outline w-[300px]"
+        >
+          Prepare
+        </button>
+        <button
+          class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-black outline-solid outline-white outline w-[300px]"
+        >
+          Countdown
+        </button>
+        <button
+          class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-black outline-solid outline-white outline w-[300px]"
+        >
+          Start Game
+        </button>
+      </div>
+      <div
+        class="flex items-center w-full p-10 half-red-half-blue h-screen text-4xl gap-6 justify-center"
+      >
+        <button
+          class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-black outline-solid outline-white outline w-[300px]"
+        >
+          Reset
+        </button>
+        <button
+          class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-black outline-solid outline-white outline w-[300px]"
+        >
+          Reset All
+        </button>
+        <button
+          class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-black outline-solid outline-white outline w-[300px]"
+        >
+          Start/Pause
+        </button>
       </div>
     </section>
     <script src="script.js"></script>

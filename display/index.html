@@ -21,26 +21,48 @@
             height="180"
             class="p-2 w-36"
           />
-          <h1
-            class="text-6xl font-bold bg-transparent text-slate-50 outline-none"
-            ,
-            id="team1-name"
-          ></h1>
+          <div class="flex flex-col">
+            <h1
+              class="text-8xl font-normal bg-transparent text-slate-50 outline-none"
+              ,
+              id="team1-name"
+            ></h1>
+            <h1
+              class="text-black text-5xl bg-white text-center"
+              id="team1-off-def"
+            >
+              offensive
+            </h1>
+          </div>
         </div>
-        <div class="flex flex-col items-center text-slate-50">
-          <div class="text-5xl font-bold pb-2">Total Score</div>
+
+        <div
+          class="flex flex-col items-center text-slate-50 fixed left-[620px]"
+        >
+          <div class="text-6xl font-normal pb-2">Total Score</div>
           <div class="text-9xl bg-black p-1" id="team1-total-score">00</div>
         </div>
-        <div class="flex flex-col items-center text-slate-50">
-          <div class="text-5xl font-bold pb-2">Total Score</div>
+        <div
+          class="flex flex-col items-center text-slate-50 fixed left-[1000px]"
+        >
+          <div class="text-6xl font-normal pb-2">Total Score</div>
           <div class="text-9xl bg-black p-1" id="team2-total-score">00</div>
         </div>
         <div class="flex items-center gap-4">
-          <h1
-            class="text-6xl font-bold bg-transparent text-slate-50 outline-none"
-            ,
-            id="team2-name"
-          ></h1>
+          <div class="flex flex-col">
+            <h1
+              class="text-8xl font-normal bg-transparent text-slate-50 outline-none"
+              ,
+              id="team2-name"
+            ></h1>
+            <h1
+              class="text-black text-5xl bg-white text-center"
+              id="team1-off-def"
+            >
+              defensive
+            </h1>
+          </div>
+
           <img
             id="team2-logo"
             src="/public/images/Logo.png"
@@ -80,7 +102,7 @@
             00
           </div>
           <div class="bg-gray-500 h-[512px] w-full flex flex-col text-center">
-            <div class="normal-font text-white text-7xl p-10">Short Clock</div>
+            <div class="text-white text-7xl p-10">Short Clock</div>
             <div
               class="text-orange-500 flex flex-col text-center items-center p-6"
             >
