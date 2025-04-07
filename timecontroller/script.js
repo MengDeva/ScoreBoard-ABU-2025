@@ -1,21 +1,44 @@
+const ws = new WebSocket(`ws://${window.location.hostname}:2932`);
+
+ws.onopen = () => {
+  console.log("Connected to WebSocket server");
+};
+
+ws.onclose = () => {
+  console.log("WebSocket connection closed");
+};
+
+ws.onerror = (error) => {
+  console.error("WebSocket error:", error);
+};
+
+
+function sendDataToServer(data) {
+  if (ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify(data));
+    console.log("Data sent to WebSocket server:", data);
+  } else {
+    console.error("WebSocket is not connected. Unable to send data.");
+  }
+}
+
 function setTeams() {
-  const redTeam = document.getElementById("redTeamSelect").value;
-  const blueTeam = document.getElementById("blueTeamSelect").value;
+  const command = "setTeams";
+  const redTeamName = document.getElementById("redTeamSelect").value;
+  const blueTeamName = document.getElementById("blueTeamSelect").value;
+  const redTeamSide = document.getElementById("redTeamSideSelect").value;
+  const blueTeamSide = document.getElementById("blueTeamSideSelect").value;
 
-  const data = { redTeam, blueTeam };
+  const data = { command, redTeamName, blueTeamName, redTeamSide, blueTeamSide };
+  sendDataToServer(data);
+}
 
-  fetch("/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      console.log("Success:", data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+// Example: Send side data to the server
+function setSides() {
+  command = "setSides";
+  const redTeamSide = document.getElementById("redTeamSideSelect").value;
+  const blueTeamSide = document.getElementById("blueTeamSideSelect").value;
+
+  const data = { command, redTeamSide, blueTeamSide };
+  sendDataToServer(data);
 }
