@@ -33,8 +33,7 @@ if __name__ == "__main__":
 
     try:
         url = f"http://{ip_address}:{port}"
-        print(f"Opening {url} in Chrome...")
-        webbrowser.get("google-chrome").open(url)
+        webbrowser.open(url)
         print("Press Ctrl+C to stop the server.")
         
         while True:
