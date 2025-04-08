@@ -10,23 +10,25 @@
   <body class="h-screen">
     <section class="h-full flex flex-col">
       <div
-        class="flex justify-between items-center w-full p-10 half-red-half-blue shadow-lg h-[500px]"
+        class="flex justify-between items-center w-full p-10 half-red-half-blue shadow-lg h-[280px]"
       >
-        <div class="flex items-center gap-4">
+        <div class="flex flex-col items-center gap-4">
           <img
             id="redTeamImage"
             src="/public/images/Logo.png"
             alt="Red Team"
-            width="180"
-            height="180"
-            class="p-2 w-36"
+            width="200"
+            height="200"
+            class="p-2 w-38"
           />
-          <div class="flex flex-col">
+          <div class="flex flex-col w-[320px]">
             <h1
-              class="text-8xl font-normal bg-transparent text-slate-50 outline-none"
+              class="text-7xl font-normal bg-transparent text-slate-50 outline-none text-center"
               ,
               id="redTeamName"
-            ></h1>
+            >
+              RED
+            </h1>
             <h1
               class="text-black text-5xl bg-white text-center"
               id="team1-sides"
@@ -34,38 +36,37 @@
           </div>
         </div>
         <div
-          class="flex flex-col items-center text-slate-50 fixed left-[620px]"
+          class="flex items-center text-slate-50 bg-black p-2 rounded-lg outline justify-center"
         >
-          <div class="text-6xl font-normal pb-2">Total Score</div>
-          <div class="text-9xl bg-black p-1" id="redTeamScore">00</div>
+          <div class="text-9xl bg-black p-6 pr-10" id="redTeamScore">00</div>
+          <div class="text-7xl pr-10 pl-10">
+            <div>Total</div>
+            <div>Score</div>
+          </div>
+          <div class="text-9xl bg-black p-6 pl-10" id="blueTeamScore">00</div>
         </div>
-        <div
-          class="flex flex-col items-center text-slate-50 fixed left-[1000px]"
-        >
-          <div class="text-6xl font-normal pb-2">Total Score</div>
-          <div class="text-9xl bg-black p-1" id="blueTeamScore">00</div>
-        </div>
-        <div class="flex items-center gap-4">
-          <div class="flex flex-col">
+        <div class="flex flex-col items-center gap-4">
+          <img
+            id="blueTeamImage"
+            src="/public/images/Logo.png"
+            alt="Blue Team"
+            width="200"
+            height="200"
+            class="p-2 w-38"
+          />
+          <div class="flex flex-col w-[320px]">
             <h1
-              class="text-8xl font-normal bg-transparent text-slate-50 outline-none"
+              class="text-7xl font-normal bg-transparent text-slate-50 outline-none text-center"
               ,
               id="blueTeamName"
-            ></h1>
+            >
+              BLUE
+            </h1>
             <h1
               class="text-black text-5xl bg-white text-center"
               id="team2-sides"
             ></h1>
           </div>
-
-          <img
-            id="blueTeamImage"
-            src="/public/images/Logo.png"
-            alt="Blue Team"
-            width="180"
-            height="180"
-            class="p-2 w-36"
-          />
         </div>
       </div>
       <div class="flex justify-center text-center">
