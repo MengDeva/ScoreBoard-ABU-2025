@@ -8,69 +8,114 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <section
-      class="min-h-screen bg-blue-500 p-4 justify-center items-center flex flex-col"
-    >
+    <section class="min-h-screen bg-blue-500 p-4 items-center flex flex-col">
       <div class="flex flex-col justify-center items-center p-10">
         <div class="mb-6 text-blue-100 text-4xl md:text-6xl lg:text-8xl">
           Blue Team Controller
         </div>
-        <div class="flex items-center gap-4">
-          <div class="text-8xl text-white">Total:</div>
-          <div class="bg-black p-1 text-orange-400 mb-4 text-9xl">00</div>
+        <div class="flex items-center gap-4 mb-7">
+          <div class="text-7xl text-white">TOTAL</div>
+          <div
+            class="bg-black p-4 text-white mb-4 text-7xl w-[170px] text-center outline-white outline flex flex-col justify-center items-center"
+          >
+            00
+          </div>
         </div>
         <div
-          class="flex gap-4 text-6xl bg-white rounded-full outline-black outline"
+          class="flex gap-4 text-6xl bg-white rounded-full outline-black outline px-5 py-4"
         >
           <button
-            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white" onclick="addScore15(-1)"
+            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white"
+            onclick="addScore15(-1)"
           >
             -
           </button>
-          <div class="text-green-600 ml-6">+15</div>
-          <div class="text-green-600">:</div>
-          <div class="mr-6" id="score15">00</div>
+          <div class="flex w-[250px] justify-center gap-7">
+            <div class="text-green-600 ml-6">+15</div>
+            <div class="text-green-600">:</div>
+            <div class="mr-6" id="score15">0</div>
+          </div>
+
           <button
-            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white" onclick="addScore15(1)"
+            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white"
+            onclick="addScore15(1)"
           >
             +
           </button>
         </div>
         <div
-          class="flex gap-4 text-6xl bg-white rounded-full outline-black outline mt-7"
+          class="flex gap-4 text-6xl bg-white rounded-full outline-black outline mt-7 px-5 py-4"
         >
           <button
-            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white" onclick="addScore10(-1)"
+            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white"
+            onclick="addScore10(-1)"
           >
             -
           </button>
-          <div class="text-green-600 ml-6">+10</div>
-          <div class="text-green-600">:</div>
-          <div class="mr-6" id="score10">00</div>
+          <div class="flex w-[250px] justify-center gap-7">
+            <div class="text-green-600 ml-6">+10</div>
+            <div class="text-green-600">:</div>
+            <div class="mr-6" id="score10">0</div>
+          </div>
+
           <button
-            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white" onclick="addScore10(1)"
+            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white"
+            onclick="addScore10(1)"
           >
             +
           </button>
         </div>
         <div
-          class="flex gap-4 text-6xl bg-white rounded-full outline-black outline mt-7"
+          class="flex gap-4 text-6xl bg-white rounded-full outline-black outline mt-7 px-5 py-4"
         >
           <button
-            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white" onclick="addScore5(-1)"
+            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white"
+            onclick="addScore5(-1)"
           >
             -
           </button>
-          <div class="text-green-600 ml-5">+5</div>
-          <div class="text-green-600 ml-5">:</div>
-          <div class="mr-5" id="score5">00</div>
+          <div class="flex w-[250px] justify-center gap-7">
+            <div class="text-green-600 ml-5">+5</div>
+            <div class="text-green-600 ml-5">:</div>
+            <div class="mr-5" id="score5">0</div>
+          </div>
+
           <button
-            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white" onclick="addScore5(1)"
+            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white"
+            onclick="addScore5(1)"
+          >
+            +
+          </button>
+        </div>
+        <div
+          class="flex gap-4 text-6xl bg-white rounded-full outline-black outline mt-7 px-5 py-4"
+        >
+          <button
+            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white"
+            onclick="addScore1(-1)"
+          >
+            -
+          </button>
+          <div class="flex w-[250px] justify-center gap-7">
+            <div class="text-green-600 ml-5">+1</div>
+            <div class="text-green-600 ml-5">:</div>
+            <div class="mr-5" id="score1">0</div>
+          </div>
+
+          <button
+            class="bg-yellow-400 rounded-full px-5 outline-black outline active:bg-white"
+            onclick="addScore1(1)"
           >
             +
           </button>
         </div>
       </div>
+      <button
+        class="bg-yellow-400 text-3xl rounded-full py-2 px-4 outline-black outline active:bg-white"
+        onclick="blueupdate"
+      >
+        Update
+      </button>
     </section>
     <script src="script.js"></script>
   </body>
