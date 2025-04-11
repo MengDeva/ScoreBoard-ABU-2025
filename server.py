@@ -21,6 +21,8 @@ data = {
         "blue_team_name": "",
         "red_team_score": 0,
         "blue_team_score": 0,
+        "red_team_side":"",
+        "blue_team_side":""
     }
 
 def updateFile(data, file_path):
@@ -47,6 +49,8 @@ async def handle_controller(websocket):
             if rev_data["command"] == "setTeams":
                 data['red_team_name'] = rev_data["redTeamName"]
                 data['blue_team_name'] = rev_data["blueTeamName"]
+                data['red_team_side'] = rev_data["redTeamSide"]
+                data['blue_team_side'] = rev_data["blueTeamSide"]
 
             elif rev_data["command"] == "score":
                 data[rev_data['side']] = rev_data["value"]

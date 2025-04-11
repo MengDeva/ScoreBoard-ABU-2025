@@ -2,6 +2,7 @@ import subprocess
 import webbrowser
 import socket
 import atexit
+import os
 
 port = 2930
 
@@ -13,7 +14,8 @@ def get_ip_address():
     return ip_address
 
 def start_server():
-    command = ["python3", "-m", "http.server", f"{port}"]
+    python_command = "python" if os.name == "nt" else "python3"
+    command = [python_command, "-m", "http.server", f"{port}"]
     process = subprocess.Popen(command)
     print(f"Server started on port {port}")
     return process

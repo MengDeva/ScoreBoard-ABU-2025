@@ -33,12 +33,16 @@ function setTeams() {
   sendDataToServer(data);
 }
 
-// Example: Send side data to the server
 function setSides() {
   command = "setSides";
   const redTeamSide = document.getElementById("redTeamSideSelect").value;
   const blueTeamSide = document.getElementById("blueTeamSideSelect").value;
 
   const data = { command, redTeamSide, blueTeamSide };
+  sendDataToServer(data);
+}
+
+function singleButton(command){
+  const data = { command };
   sendDataToServer(data);
 }

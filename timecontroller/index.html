@@ -40,8 +40,8 @@
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 normal-font"
               >
                 <option selected>Choose a Sides</option>
-                <option value="OFF" class="">OFFENSIVE</option>
-                <option value="DEF">DEFENSIVE</option>
+                <option>OFFENSIVE</option>
+                <option>DEFENSIVE</option>
               </select>
             </form>
           </div>
@@ -87,8 +87,8 @@
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 normal-font"
               >
                 <option selected>Choose a Sides</option>
-                <option value="OFF" class="">OFFENSIVE</option>
-                <option value="DEF">DEFENSIVE</option>
+                <option>OFFENSIVE</option>
+                <option>DEFENSIVE</option>
               </select>
             </form>
           </div>
@@ -118,16 +118,19 @@
       >
         <button
           class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-solid outline-white outline w-[300px]"
+          onclick="singleButton('reset')"  
         >
           Reset
         </button>
         <button
           class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-solid outline-white outline w-[300px]"
+          onclick="singleButton('resetAll')"
         >
           Reset All
         </button>
         <button
           class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-solid outline-white outline w-[300px]"
+          onclick="singleButton('start')"
         >
           Start/Pause
         </button>

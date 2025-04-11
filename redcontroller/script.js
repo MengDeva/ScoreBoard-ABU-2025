@@ -12,6 +12,17 @@ ws.onerror = (error) => {
   console.error("WebSocket error:", error);
 };
 
+ws.onmessage = (event) => {
+  const message = JSON.parse(event.data);
+  if(message=="reset"){
+    document.getElementById("score1").innerText = 0;
+    document.getElementById("score2").innerText = 0;
+    document.getElementById("score3").innerText = 0;
+    document.getElementById("score7").innerText = 0;
+    console.log("Scores reset to zero.");
+  }
+}
+
 function sendDataToServer(data) {
   if (ws.readyState === WebSocket.OPEN) {
     ws.send(JSON.stringify(data));
@@ -26,6 +37,7 @@ function addScore7(increment) {
   score7.innerText = parseInt(score7.innerText) + increment;
   count = parseInt(score7.innerText);
   data = { command: "score", side: "r7", value: count };
+  updateTotalScore();
   sendDataToServer(data);
 }
 
@@ -34,6 +46,7 @@ function addScore3(increment) {
   score3.innerText = parseInt(score3.innerText) + increment;
   count = parseInt(score3.innerText);
   data = { command: "score", side: "r3", value: count };
+  updateTotalScore();
   sendDataToServer(data);
 }
 
@@ -42,6 +55,7 @@ function addScore2(increment) {
   score2.innerText = parseInt(score2.innerText) + increment;
   count = parseInt(score2.innerText);
   data = { command: "score", side: "r2", value: count };
+  updateTotalScore();
   sendDataToServer(data);
 }
 
@@ -50,5 +64,17 @@ function addScore1(increment) {
   score1.innerText = parseInt(score1.innerText) + increment;
   count = parseInt(score1.innerText);
   data = { command: "score", side: "r1", value: count };
+  updateTotalScore();
   sendDataToServer(data);
+}
+
+function updateTotalScore(){
+  const score1 = parseInt(document.getElementById("score1").innerText) || 0;
+  const score2 = parseInt(document.getElementById("score2").innerText) || 0;
+  const score3 = parseInt(document.getElementById("score3").innerText) || 0;
+  const score7 = parseInt(document.getElementById("score7").innerText) || 0;
+  
+  const totalScore = score1 + score2 * 2 + score3 * 3 + score7 * 7;
+  
+  document.getElementById("totalScore").innerText = totalScore;
 }

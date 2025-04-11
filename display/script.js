@@ -20,34 +20,40 @@ ws.onerror = (error) => {
 function updateDisplay(data) {
     const redTeamName = document.getElementById("redTeamName");
     const blueTeamName = document.getElementById("blueTeamName");
+    const redTeamSide = document.getElementById("redTeamSide");
+    const blueTeamSide = document.getElementById("blueTeamSide");
     const redTeamScore = document.getElementById("redTeamScore");
     const blueTeamScore = document.getElementById("blueTeamScore");
-    const red15 = document.getElementById("r15");
-    const red10 = document.getElementById("r10");
-    const red5 = document.getElementById("r5");
-    const blue15 = document.getElementById("b15");
-    const blue10 = document.getElementById("b10");
-    const blue5 = document.getElementById("b5");
+    const red7 = document.getElementById("r7");
+    const red3 = document.getElementById("r3");
+    const red2 = document.getElementById("r2");
+    const blue7 = document.getElementById("b7");
+    const blue3 = document.getElementById("b3");
+    const blue2 = document.getElementById("b2");
 
     redTeamName.textContent = data.red_team_name;
     blueTeamName.textContent = data.blue_team_name;
+    redTeamSide.textContent = data.red_team_side;
+    blueTeamSide.textContent = data.blue_team_side;
 
-    const r15 = parseInt(data.r15) || 0;
-    const r10 = parseInt(data.r10) || 0;
-    const r5 = parseInt(data.r5) || 0;
-    const b15 = parseInt(data.b15) || 0;
-    const b10 = parseInt(data.b10) || 0;
-    const b5 = parseInt(data.b5) || 0;
+    const r7 = parseInt(data.r7) || 0;
+    const r3 = parseInt(data.r3) || 0;
+    const r2 = parseInt(data.r2) || 0;
+    const r1 = parseInt(data.r1) || 0;
+    const b7 = parseInt(data.b7) || 0;
+    const b3 = parseInt(data.b3) || 0;
+    const b2 = parseInt(data.b2) || 0;
+    const b1 = parseInt(data.b1) || 0;
 
-    red15.textContent = r15;
-    red10.textContent = r10;
-    red5.textContent = r5;
-    blue15.textContent = b15;
-    blue10.textContent = b10;
-    blue5.textContent = b5;
+    red7.textContent = r7;
+    red3.textContent = r3;
+    red2.textContent = r2;
+    blue7.textContent = b7;
+    blue3.textContent = b3;
+    blue2.textContent = b2;
 
-    const redScore = r15 * 15 + r10 * 10 + r5 * 5;
-    const blueScore = b15 * 15 + b10 * 10 + b5 * 5;
+    const redScore = r7 * 7 + r3 * 3 + r2 * 2 + r1 * 1;
+    const blueScore = b7 * 7 + b3 * 3 + b2 * 2 + b1 * 1;
 
     redTeamScore.textContent = redScore;
     blueTeamScore.textContent = blueScore;
