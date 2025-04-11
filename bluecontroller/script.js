@@ -21,27 +21,27 @@ function sendDataToServer(data) {
   }
 }
 
-function addScore15(increment) {
-  const score15 = document.getElementById("score15");
-  score15.innerText = parseInt(score15.innerText) + increment;
-  count = parseInt(score15.innerText);
-  data = { command: "score", side: "b15", value: count };
+function addScore7(increment) {
+  const score7 = document.getElementById("score7");
+  score7.innerText = parseInt(score7.innerText) + increment;
+  count = parseInt(score7.innerText);
+  data = { command: "score", side: "b7", value: count };
   sendDataToServer(data);
 }
 
-function addScore10(increment) {
-  const score10 = document.getElementById("score10");
-  score10.innerText = parseInt(score10.innerText) + increment;
-  count = parseInt(score10.innerText);
-  data = { command: "score", side: "b10", value: count };
+function addScore3(increment) {
+  const score3 = document.getElementById("score3");
+  score3.innerText = parseInt(score3.innerText) + increment;
+  count = parseInt(score3.innerText);
+  data = { command: "score", side: "b3", value: count };
   sendDataToServer(data);
 }
 
-function addScore5(increment) {
-  var score5 = document.getElementById("score5");
-  score5.innerText = parseInt(score5.innerText) + increment;
-  count = parseInt(score5.innerText);
-  data = { command: "score", side: "b5", value: count };
+function addScore2(increment) {
+  var score2 = document.getElementById("score2");
+  score2.innerText = parseInt(score2.innerText) + increment;
+  count = parseInt(score2.innerText);
+  data = { command: "score", side: "b2", value: count };
   sendDataToServer(data);
 }
 
