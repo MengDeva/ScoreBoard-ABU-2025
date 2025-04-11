@@ -1,4 +1,5 @@
 const ws = new WebSocket(`ws://${window.location.hostname}:2931`);
+closeOverlay();
 ws.onopen = () => {
     console.log("Connected to WebSocket server");
 };
@@ -18,10 +19,6 @@ ws.onerror = (error) => {
 };
 
 function updateDisplay(data) {
-    const redTeamName = document.getElementById("redTeamName");
-    const blueTeamName = document.getElementById("blueTeamName");
-    const redTeamSide = document.getElementById("redTeamSide");
-    const blueTeamSide = document.getElementById("blueTeamSide");
     const redTeamScore = document.getElementById("redTeamScore");
     const blueTeamScore = document.getElementById("blueTeamScore");
     const red7 = document.getElementById("r7");
@@ -30,11 +27,25 @@ function updateDisplay(data) {
     const blue7 = document.getElementById("b7");
     const blue3 = document.getElementById("b3");
     const blue2 = document.getElementById("b2");
+    const gameClock = document.getElementById("gameClock");
+    const shotClock = document.getElementById("shotClock");
 
-    redTeamName.textContent = data.red_team_name;
-    blueTeamName.textContent = data.blue_team_name;
-    redTeamSide.textContent = data.red_team_side;
-    blueTeamSide.textContent = data.blue_team_side;
+    var redName = data.red_team_name;
+    var blueName = data.blue_team_name;
+    var redPic = redName.replace(/\s\d+/g, '');
+    var bluePic = blueName.replace(/\s\d+/g, '');
+    if(redName == null || redName == "") {
+        redName = "Red Team";
+        redPic = "default";
+    } 
+    if(blueName == null || blueName == "") {
+        blueName = "Blue Team";
+        bluePic = "default";
+    }
+    changeTeam("red", redPic, redName, data.red_team_side);
+    changeTeam("blue", bluePic, blueName, data.blue_team_side);
+    gameClock.textContent = Math.ceil(data.game_clock);
+    shotClock.textContent = Math.ceil(data.shot_clock);
 
     const r7 = parseInt(data.r7) || 0;
     const r3 = parseInt(data.r3) || 0;
@@ -57,4 +68,31 @@ function updateDisplay(data) {
 
     redTeamScore.textContent = redScore;
     blueTeamScore.textContent = blueScore;
+
+    if (data.overlay_timer > 0){
+        openOverlay(Math.ceil(data.overlay_timer), data.overlay_message);
+    } else {
+        closeOverlay();
+    }
+}
+
+function changeTeam(team, png_name, name, side) {
+    logo = `/public/team/${png_name}.png` 
+    document.getElementById(`${team}TeamImage`).src = logo;
+    document.getElementById(`${team}TeamName`).textContent = name;
+    document.getElementById(`${team}TeamSide`).textContent = side;
+  }
+
+function openOverlay(text, header_text) {
+    const overlay = document.getElementById('overlay');
+    const overlayText = document.getElementById('overlay-text');
+    const overlayHeader = document.getElementById('overlay-header');
+    overlayHeader.innerText = header_text;
+    overlayText.innerText = text;
+    overlay.style.display = 'flex';
+}
+
+function closeOverlay() {
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none';
 }
