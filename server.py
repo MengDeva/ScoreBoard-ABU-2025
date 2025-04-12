@@ -4,7 +4,9 @@ import json
 import threading
 import socket
 import time
- 
+import os
+import math
+
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.connect(('10.255.255.255', 1))
 IPAddr = s.getsockname()[0]
@@ -19,6 +21,10 @@ start_time = time.monotonic()
 game_time = 160
 shot_clock_time = 20
 
+log = ""
+game_round = 1 
+
+
 data = {
         "red_team_name": "",
         "blue_team_name": "",
@@ -27,7 +33,15 @@ data = {
         "game_clock": game_time,
         "shot_clock": shot_clock_time,
         "overlay_timer": 0,
-        "overlay_message": ""
+        "overlay_message": "",
+        "r1": 0,
+        "r2": 0,
+        "r3": 0,
+        "r7": 0,
+        "b1": 0,
+        "b2": 0,
+        "b3": 0,
+        "b7": 0
     }
 
 def update_connections():
@@ -39,7 +53,7 @@ def update_connections():
         print(f"Controller Connections: {len(controller_connections)}")
 
 async def handle_controller(websocket):
-    global controller_connections, data, start_time, timer_running
+    global controller_connections, data, start_time, timer_running, log, game_round
     controller_connections.append(websocket)
     update_connections()
 
@@ -53,15 +67,36 @@ async def handle_controller(websocket):
                 data['red_team_side'] = rev_data["redTeamSide"]
                 data['blue_team_side'] = rev_data["blueTeamSide"]
 
+            elif rev_data["command"] == "setSides":
+                data['red_team_side'] = rev_data["redTeamSide"]
+                data['blue_team_side'] = rev_data["blueTeamSide"]
+                log += f"Game Time:{math.ceil(data["game_clock"])} - Round {game_round} - Sides Changed\n"
+
             elif rev_data["command"] == "score":
                 data[rev_data['side']] = rev_data["value"]
+                if rev_data["side"] == "r1":
+                    log += f"Game Time:{math.ceil(data["game_clock"])} - Round {game_round} - {rev_data['value']} Score added to {data['red_team_name']}!\n"
+                elif rev_data["side"] == "b1":
+                    log += f"Game Time:{math.ceil(data["game_clock"])} - Round {game_round} - {rev_data['value']} Score added to {data['blue_team_name']}!\n"
+                else:
+                    data["overlay_timer"] = 10
+                    data["shot_clock"] = 20
+                    if rev_data["side"][0] == "r":
+                        data["overlay_message"] = f"Posession Change\n{data['red_team_name']} scored {rev_data["side"][1]}!"
+                        log += f"Game Time:{math.ceil(data["game_clock"])} - Round {game_round} - {data['red_team_name']} scored {rev_data["side"][1]}!\n"
+                        game_round += 1
+                        change_team_side()
+                    else:
+                        data["overlay_message"] = f"Posession Change\n{data['blue_team_name']} scored {rev_data["side"][1]}!"
+                        log += f"Game Time:{math.ceil(data["game_clock"])} - Round {game_round} - {data['blue_team_name']} scored {rev_data["side"][1]}!\n"
+                        game_round += 1
+                        change_team_side()
 
-            elif rev_data["command"] == "start":
-                if not timer_running:
-                    timer_running = True
-                    start_time = time.monotonic()
-                elif timer_running:
-                    timer_running = False
+            elif rev_data["command"] == "p_change":
+                timer_running = True
+                data["overlay_timer"] = 10
+                data["overlay_message"] = f"Posession Change"
+                log += f"Game Time:{math.ceil(data["game_clock"])} - Round {game_round} - Possesion Change!\n"
 
             elif rev_data["command"] == "resetAll":
                 reset()
@@ -77,7 +112,7 @@ async def handle_controller(websocket):
                 start_time = time.monotonic()
                 timer_running = True
 
-            elif rev_data["command"] == "countdown":
+            elif rev_data["command"] == "start":
                 data["overlay_timer"] = 5
                 data["overlay_message"] = "Starting in .."
                 start_time = time.monotonic()
@@ -87,8 +122,12 @@ async def handle_controller(websocket):
                 if timer_running == False:
                     start_time = time.monotonic()
                     timer_running = True
+                    if log != "":
+                        log += f"Game Time:{math.ceil(data["game_clock"])} - Round {game_round} - Game Resume\n"
                 else:
                     timer_running = False
+                    if log != "":
+                        log += f"Game Time:{math.ceil(data["game_clock"])} - Round {game_round} - Game Paused\n"
                 
             data_json = json.dumps(data)
             await broadcast_to_displays(data_json)
@@ -144,7 +183,7 @@ async def start_display():
         await asyncio.Future()
 
 def reset():
-    global data
+    global data, log
 
     data = {
         "red_team_name": "",
@@ -154,20 +193,57 @@ def reset():
         "game_clock": game_time,
         "shot_clock": shot_clock_time,
         "overlay_timer": 0,
-        "overlay_message": ""
+        "overlay_message": "",
+        "r1": 0,
+        "r2": 0,
+        "r3": 0,
+        "r7": 0,
+        "b1": 0,
+        "b2": 0,
+        "b3": 0,
+        "b7": 0
     }
-
+    log = ""
     asyncio.run_coroutine_threadsafe(broadcast_to_displays(json.dumps(data)), server_loop)
 
 
+def change_team_side():
+    global data
+    if data["red_team_side"] == "OFFENSIVE":
+        data["red_team_side"] = "DEFENSIVE"
+        data["blue_team_side"] = "OFFENSIVE"
+    else:
+        data["red_team_side"] = "OFFENSIVE"
+        data["blue_team_side"] = "DEFENSIVE"
+    
+    changeSideCommand = {
+        "command": "changeSide",
+        "redTeamSide": data["red_team_side"],
+        "blueTeamSide": data["blue_team_side"]
+        }
+    
+    asyncio.run_coroutine_threadsafe(broadcast_to_controllers(json.dumps(changeSideCommand)), server_loop)
+
 def updateFileJson():
     global data
-    with open("data/data.json", 'w') as f:
-        f.write(json.dumps(data, indent=4))
-        json.dump(data, f)
+    file_path = "data/data.json"
+    if not os.path.exists(file_path):
+        os.makedirs("data")
+    with open(file_path, 'w') as f:
+        json.dump(data, f, indent=4)
+
+def log_game():
+    global log
+    timestamp = time.strftime("%Y-%m-%d %H-%M-%S", time.localtime())
+    file_path = f"data/log_{timestamp}.txt"
+
+    with open(file_path, 'w') as f:
+        f.write(log)
+        log = ""
+        print(f"Game log saved to {file_path}")
 
 def timer():
-    global timer_running, start_time, game_time, shot_clock_time, data
+    global timer_running, start_time, game_time, shot_clock_time, data, log, game_round
     while True:
         if timer_running:
             elapsed_time = time.monotonic() - start_time
@@ -179,7 +255,30 @@ def timer():
             
             else:
                 if data["shot_clock"] <= 0:
+                    data["overlay_timer"] = 10
+                    data["shot_clock"] = 20
+                    data["overlay_message"] = "Possesion Change\nShot Clock Over"
+                    log += f"Game Time:{math.ceil(data["game_clock"])} - Round {game_round} - Shot Clock Over\n"
+                    game_round += 1
+                    change_team_side()
+
+                elif data["game_clock"] <= 0:
+                    total_red = data["r1"] + 2*data["r2"] + 3*data["r3"] + 7*data["r7"]
+                    total_blue = data["b1"] + 2*data["b2"] + 3*data["b3"] + 7*data["b7"]
+                    if total_red > total_blue:
+                        winner = data["red_team_name"]
+                    elif total_blue > total_red:
+                        winner = data["blue_team_name"]
+                    else:
+                        winner = "Draw"
+                    data["overlay_timer"] = f"winner : {winner}"
+                    data["overlay_message"] = "Game Finished"
+                    log += f"Game Time:{math.ceil(data["game_clock"])} - Round {game_round} - Game Finished\n"
+                    log += f"Red Team: {data['red_team_name']} - Score: {total_red}\n"
+                    log += f"Blue Team: {data['blue_team_name']} - Score: {total_blue}\n"
                     timer_running = False
+                    log_game()
+
                 else:
                     data["game_clock"] -= elapsed_time
                     data["shot_clock"] -= elapsed_time
@@ -188,7 +287,7 @@ def timer():
             updateFileJson()
             
             asyncio.run_coroutine_threadsafe(broadcast_to_displays(json.dumps(data)), server_loop)
-            time.sleep(0.1)
+            time.sleep(0.05)
 
 def run_servers():
     global server_loop

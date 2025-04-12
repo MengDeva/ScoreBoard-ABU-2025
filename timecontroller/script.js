@@ -12,6 +12,13 @@ ws.onerror = (error) => {
   console.error("WebSocket error:", error);
 };
 
+ws.onmessage = (event) => {
+  const message = JSON.parse(event.data);
+  console.log("Received message:", message);
+  if(message.command=="changeSide"){
+    changeSide(message)
+  }
+}
 
 function sendDataToServer(data) {
   if (ws.readyState === WebSocket.OPEN) {
@@ -45,4 +52,9 @@ function setSides() {
 function singleButton(command){
   const data = { command };
   sendDataToServer(data);
+}
+
+function changeSide(data){
+  document.getElementById("redTeamSideSelect").value = data.redTeamSide;
+  document.getElementById("blueTeamSideSelect").value = data.blueTeamSide;
 }
