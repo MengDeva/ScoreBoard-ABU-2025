@@ -10,16 +10,14 @@
   <body class="h-screen">
     <section class="h-full flex flex-col">
       <div
-        class="flex justify-between items-center w-full p-14 half-red-half-blue shadow-lg h-[360px]"
+        class="flex justify-between items-center w-full p-12 half-red-half-blue shadow-lg h-[360px]"
       >
         <div class="flex flex-col items-center gap-2">
           <img
             id="redTeamImage"
             src="/public/images/Logo.png"
             alt="Red Team"
-            width="240"
-            height="240"
-            class="w-38"
+            class="h-48 max-w-[320px]"
           />
           <div class="flex flex-col w-[320px]">
             <h1
@@ -38,23 +36,31 @@
           </div>
         </div>
         <div
-          class="flex items-center text-slate-50 bg-black p-2 rounded-lg outline justify-center w-[900px] h-[250px]"
+          class="flex items-center text-slate-50 bg-black p-2 rounded-lg outline justify-center w-[1000px] h-[280px]"
         >
-          <div class="text-[12rem] p-1 pr-12 pl-10" id="redTeamScore">00</div>
+          <div
+            class="text-[11rem] p-1 w-[400px] flex justify-center items-center text-center text-white"
+            id="redTeamScore"
+          >
+            00
+          </div>
           <div class="text-8xl pr-10 pl-10">
             <div>Total</div>
             <div>Score</div>
           </div>
-          <div class="text-[12rem] p-1 pl-12 pr-10" id="blueTeamScore">00</div>
+          <div
+            class="text-[11rem] p-1 w-[400px] flex justify-center items-center text-center text-white"
+            id="blueTeamScore"
+          >
+            00
+          </div>
         </div>
         <div class="flex flex-col items-center gap-2">
           <img
             id="blueTeamImage"
             src="/public/images/Logo.png"
             alt="Blue Team"
-            width="240"
-            height="240"
-            class="w-38" 
+            class="h-48 max-w-[320px]"
           />
           <div class="flex flex-col w-[320px]">
             <h1
@@ -122,7 +128,10 @@
             <div
               class="text-orange-500 flex flex-col text-center items-center p-6"
             >
-              <div class="text-9xl bg-black p-3 scale-150" id="shotClock">
+              <div
+                class="text-9xl bg-black p-3 scale-150 w-[200px]"
+                id="shotClock"
+              >
                 00
               </div>
             </div>
@@ -166,7 +175,7 @@
         </div>
       </div>
     </section>
-    
+
     <div class="overlay" id="overlay">
       <div class="overlay-header" id="overlay-header"></div>
       <div class="overlay-text" id="overlay-text"></div>
