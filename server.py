@@ -248,7 +248,8 @@ def timer():
     while True:
         if timer_running:
             elapsed_time = time.monotonic() - start_time
-            
+            clock = data["game_clock"]
+
             if data["overlay_timer"] > 0:
                 data["overlay_timer"] -= elapsed_time
                 if data["overlay_timer"] <= 0 and data["overlay_message"] == "Prepare Time":
@@ -281,7 +282,7 @@ def timer():
                     log_game()
 
                 else:
-                    clock -= elapsed_time
+                    data["game_clock"] -= elapsed_time
                     data["shot_clock"] -= elapsed_time
             
             start_time = time.monotonic()
@@ -302,6 +303,9 @@ def run_servers():
 
 server_thread = threading.Thread(target=run_servers)
 timer_thread = threading.Thread(target=timer)
+
+server_thread.daemon = True
+timer_thread.daemon = True
 
 server_thread.start()
 timer_thread.start()
