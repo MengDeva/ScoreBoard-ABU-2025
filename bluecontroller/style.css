@@ -1,5 +1,6 @@
 body {
   font-family: "Digital-7", Arial, sans-serif;
+  background-color: blue;
 }
 * {
   touch-action: manipulation;
