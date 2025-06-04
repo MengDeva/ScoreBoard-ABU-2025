@@ -15,10 +15,10 @@ ws.onerror = (error) => {
 ws.onmessage = (event) => {
   const message = JSON.parse(event.data);
   console.log("Received message:", message);
-  if(message.command=="reset"){
+  if (message.command == "reset") {
     resetScores();
   }
-}
+};
 
 function sendDataToServer(data) {
   if (ws.readyState === WebSocket.OPEN) {
@@ -65,14 +65,14 @@ function addScore1(increment) {
   sendDataToServer(data);
 }
 
-function updateTotalScore(){
+function updateTotalScore() {
   const score1 = parseInt(document.getElementById("score1").innerText) || 0;
   const score2 = parseInt(document.getElementById("score2").innerText) || 0;
   const score3 = parseInt(document.getElementById("score3").innerText) || 0;
   const score7 = parseInt(document.getElementById("score7").innerText) || 0;
-  
+
   const totalScore = score1 + score2 * 2 + score3 * 3 + score7 * 7;
-  
+
   document.getElementById("totalScore").innerText = totalScore;
 }
 
@@ -81,11 +81,11 @@ function resetScores() {
   const score2 = document.getElementById("score2");
   const score3 = document.getElementById("score3");
   const score7 = document.getElementById("score7");
-  
+
   score1.innerText = 0;
   score2.innerText = 0;
   score3.innerText = 0;
   score7.innerText = 0;
-  
+
   updateTotalScore();
 }
