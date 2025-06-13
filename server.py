@@ -114,6 +114,12 @@ async def handle_controller(websocket):
                     data["overlay_timer"] = 10
                     timer_running = False
 
+            elif rev_data["command"] == "add10sec":
+                data["shot_clock"] += 10
+            
+            elif rev_data["command"] == "sub10sec":
+                data["shot_clock"] -= 10
+
             data_json = json.dumps(data)
             await broadcast_to_displays(data_json)
             updateFileJson()
