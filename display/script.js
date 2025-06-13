@@ -70,7 +70,7 @@ function updateDisplay(data) {
     blueTeamScore.textContent = blueScore;
 
     if (data.overlay_timer > 0){
-        openOverlay(Math.ceil(data.overlay_timer), data.overlay_message);
+        openOverlay(Math.ceil(data.overlay_timer));
     } else {
         closeOverlay();
     }
@@ -83,11 +83,9 @@ function changeTeam(team, png_name, name, side) {
     document.getElementById(`${team}TeamSide`).textContent = side;
   }
 
-function openOverlay(text, header_text) {
+function openOverlay(text) {
     const overlay = document.getElementById('overlay');
     const overlayText = document.getElementById('overlay-text');
-    const overlayHeader = document.getElementById('overlay-header');
-    overlayHeader.innerText = header_text;
     overlayText.innerText = text;
     overlay.style.display = 'flex';
 }
