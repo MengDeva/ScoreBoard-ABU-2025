@@ -10,12 +10,12 @@
   <body>
     <section class="h-screen flex flex-col">
       <div
-        class="flex justify-between items-center w-full p-8 half-red-half-blue h-screen"
+        class="flex justify-between items-center w-full p-4 half-red-half-blue h-screen"
       >
         <div class="flex justify-between items-center w-full">
           <div class="flex-col flex">
             <form class="flex items-center gap-1 p-2">
-              <label class="block text-3xl font-medium text-white w-[300px]"
+              <label class="block text-2xl font-medium text-white w-[300px]"
                 >Select a Team</label
               >
               <select
@@ -34,7 +34,7 @@
               </select>
             </form>
             <form class="flex items-center gap-1 p-2">
-              <label class="block text-3xl font-medium text-white w-[300px]"
+              <label class="block text-2xl font-medium text-white w-[300px]"
                 >Select a Sides</label
               >
               <select
@@ -47,24 +47,23 @@
               </select>
             </form>
           </div>
-          <div class="flex-col flex">
+          <div class="flex-col flex items-center justify-center gap-3">
             <button
-              class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-white outline-solid outline mb-3"
+              class="bg-white hover:bg-gray-300 text-black font-semibold py-3 px-8 rounded-full normal-font outline-white outline-solid outline text-sm"
               onclick="setTeams()"
             >
               SET TEAM
             </button>
             <button
-              class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-white outline-solid outline"
+              class="bg-white hover:bg-gray-300 text-black font-semibold py-3 px-8 rounded-full normal-font outline-white outline-solid outline text-sm"
               onclick="setSides()"
             >
               SET TEAM SIDES
             </button>
           </div>
-
           <div class="flex-col flex">
             <form class="flex items-center gap-1 p-2">
-              <label class="block text-3xl font-medium text-white w-[300px]"
+              <label class="block text-2xl font-medium text-white w-[300px]"
                 >Select a Team</label
               >
               <select
@@ -83,7 +82,7 @@
               </select>
             </form>
             <form class="flex items-center gap-1 p-2">
-              <label class="block text-3xl font-medium text-white w-[300px]"
+              <label class="block text-2xl font-medium text-white w-[300px]"
                 >Select a Sides</label
               >
               <select
@@ -99,55 +98,80 @@
         </div>
       </div>
       <div
-        class="flex items-center w-full p-10 half-red-half-blue h-screen text-4xl gap-6 justify-center"
+        class="flex items-center w-full p-10 half-red-half-blue h-screen text-xl gap-6 justify-center relative"
       >
         <button
-          class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[400px]"
+          class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-gray-200"
           onclick="singleButton('prepare')"
         >
           Prepare
         </button>
         <button
-          class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[400px]"
-          onclick="singleButton('start')"
-        >
-          Run Time
-        </button>
-        <button
-          class="bg-green-500 hover:bg-green-600 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[400px]"
-          onclick="singleButton('add10sec')"
-        >
-          Shot Clock +10
-        </button>
-        <button
-          class="bg-red-500 hover:bg-red-600 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[400px]"
-          onclick="singleButton('sub10sec')"
-        >
-          Shot Clock -10
-        </button>
-      </div>
-      <div
-        class="flex items-center w-full p-10 half-red-half-blue h-screen text-4xl gap-6 justify-center"
-      >
-        <button
-          class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-solid outline-white outline w-[500px]"
-          onclick="singleButton('reset')"
-        >
-          Reset Shot Clock
-        </button>
-        <button
-          class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-solid outline-white outline w-[500px]"
-          onclick="singleButton('resetAll')"
-        >
-          Reset All
-        </button>
-        <button
-          class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-solid outline-white outline w-[500px]"
+          class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-gray-200"
           onclick="singleButton('pause')"
         >
           Pause / 10Seconds
         </button>
+        <button
+          class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-gray-200"
+          onclick="singleButton('start')"
+        >
+          Run Time
+        </button>
       </div>
+      <div
+        class="flex items-center w-full p-10 half-red-half-blue h-screen text-xl gap-6 justify-center relative"
+      >
+        <div class="flex flex-col gap-6">
+          <button
+            class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-gray-200"
+            onclick="singleButton('resetAll')"
+          >
+            Reset All
+          </button>
+          <button
+            class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-gray-200"
+            onclick="singleButton('reset')"
+          >
+            Reset Shot Clock
+          </button>
+        </div>
+
+        <div class="flex flex-col gap-6">
+          <button
+            class="bg-green-500 hover:bg-green-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-gray-200"
+            onclick="singleButton('add10sec')"
+          >
+            Shot Clock +10
+          </button>
+          <button
+            class="bg-red-500 hover:bg-red-500 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-white"
+            onclick="singleButton('sub10sec')"
+          >
+            Shot Clock -10
+          </button>
+        </div>
+        <div class="flex flex-col gap-6">
+          <button
+            class="bg-green-500 hover:bg-green-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-white"
+            onclick="singleButton('add1sec')"
+          >
+            Shot Clock +1
+          </button>
+          <button
+            class="bg-red-500 hover:bg-red-500 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-white"
+            onclick="singleButton('sub1sec')"
+          >
+            Shot Clock -1
+          </button>
+        </div>
+      </div>
+      <div
+        class="flex items-center w-full p-10 half-red-half-blue h-screen text-2xl gap-6 justify-center"
+      ></div>
+      <div
+        class="flex items-center w-full p-10 half-red-half-blue h-screen text-2xl gap-6 justify-center"
+      ></div>
     </section>
     <script src="script.js"></script>
   </body>

@@ -12,7 +12,7 @@ s.connect(('10.255.255.255', 1))
 IPAddr = s.getsockname()[0]
 s.close()
 
-controller_connections:list = []
+controller_connections: list = []
 display_connected = False
 
 timer_running = False
@@ -22,26 +22,26 @@ game_time = 160
 shot_clock_time = 20
 
 log = ""
-game_round = 1 
+game_round = 1
 
 data = {
-        "red_team_name": "",
-        "blue_team_name": "",
-        "red_team_side":"",
-        "blue_team_side":"",
-        "game_clock": game_time,
-        "shot_clock": shot_clock_time,
-        "overlay_timer": 0,
-        "overlay_message": "",
-        "r1": 0,
-        "r2": 0,
-        "r3": 0,
-        "r7": 0,
-        "b1": 0,
-        "b2": 0,
-        "b3": 0,
-        "b7": 0
-    }
+    "red_team_name": "",
+    "blue_team_name": "",
+    "red_team_side": "",
+    "blue_team_side": "",
+    "game_clock": game_time,
+    "shot_clock": shot_clock_time,
+    "overlay_timer": 0,
+    "overlay_message": "",
+    "r1": 0,
+    "r2": 0,
+    "r3": 0,
+    "r7": 0,
+    "b1": 0,
+    "b2": 0,
+    "b3": 0,
+    "b7": 0
+}
 
 def update_connections():
     if display_connected:
@@ -75,7 +75,7 @@ async def handle_controller(websocket):
             elif rev_data["command"] == "score":
                 data[rev_data['side']] = rev_data["value"]
                 timer_running = False
-                side= rev_data['side']
+                side = rev_data['side']
                 if side == "r1":
                     log += f"Game Time:{math.ceil(clock)} - Round {game_round} - {rev_data['value']} Score added to {data['red_team_name']}!\n"
                 elif side == "b1":
@@ -93,7 +93,7 @@ async def handle_controller(websocket):
                 reset()
                 timer_running = False
                 await broadcast_to_controllers(json.dumps({"command": "reset"}))
-            
+
             elif rev_data["command"] == "reset":
                 data["shot_clock"] = shot_clock_time
 
@@ -116,14 +116,19 @@ async def handle_controller(websocket):
 
             elif rev_data["command"] == "add10sec":
                 data["shot_clock"] += 10
-            
+
             elif rev_data["command"] == "sub10sec":
                 data["shot_clock"] -= 10
+
+            elif rev_data["command"] == "add1sec":
+                data["shot_clock"] += 1
+
+            elif rev_data["command"] == "sub1sec":
+                data["shot_clock"] -= 1
 
             data_json = json.dumps(data)
             await broadcast_to_displays(data_json)
             updateFileJson()
-
 
     finally:
         controller_connections.remove(websocket)
@@ -156,10 +161,12 @@ async def broadcast_to_controllers(message):
     if controller_connections:
         try:
             print(f"Broadcasting to {len(controller_connections)} controllers")
-            tasks = [asyncio.create_task(ws.send(message)) for ws in controller_connections]
+            tasks = [asyncio.create_task(ws.send(message))
+                     for ws in controller_connections]
             await asyncio.gather(*tasks)
         except websockets.exceptions.ConnectionClosed:
-            controller_connections = [ws for ws in controller_connections if ws.open]
+            controller_connections = [
+                ws for ws in controller_connections if ws.open]
             update_connections()
 
 async def start_controller():
@@ -179,8 +186,8 @@ def reset():
     data = {
         "red_team_name": "",
         "blue_team_name": "",
-        "red_team_side":"",
-        "blue_team_side":"",
+        "red_team_side": "",
+        "blue_team_side": "",
         "game_clock": game_time,
         "shot_clock": shot_clock_time,
         "overlay_timer": 0,
@@ -195,7 +202,9 @@ def reset():
         "b7": 0
     }
     log = ""
-    asyncio.run_coroutine_threadsafe(broadcast_to_displays(json.dumps(data)), server_loop)
+    asyncio.run_coroutine_threadsafe(
+        broadcast_to_displays(json.dumps(data)), server_loop)
+
 
 def updateFileJson():
     global data
@@ -226,7 +235,7 @@ def timer():
                 data["overlay_timer"] -= elapsed_time
                 if data["overlay_timer"] <= 0:
                     timer_running = False
-            
+
             else:
                 if data["shot_clock"] <= 0:
                     timer_running = False
@@ -235,8 +244,10 @@ def timer():
                     game_round += 1
 
                 elif clock <= 0:
-                    total_red = data["r1"] + 2*data["r2"] + 3*data["r3"] + 7*data["r7"]
-                    total_blue = data["b1"] + 2*data["b2"] + 3*data["b3"] + 7*data["b7"]
+                    total_red = data["r1"] + 2*data["r2"] + \
+                        3*data["r3"] + 7*data["r7"]
+                    total_blue = data["b1"] + 2 * \
+                        data["b2"] + 3*data["b3"] + 7*data["b7"]
                     if total_red > total_blue:
                         winner = data["red_team_name"]
                     elif total_blue > total_red:
@@ -253,11 +264,12 @@ def timer():
                 else:
                     data["game_clock"] -= elapsed_time
                     data["shot_clock"] -= elapsed_time
-            
+
             start_time = time.monotonic()
             updateFileJson()
-            
-            asyncio.run_coroutine_threadsafe(broadcast_to_displays(json.dumps(data)), server_loop)
+
+            asyncio.run_coroutine_threadsafe(
+                broadcast_to_displays(json.dumps(data)), server_loop)
             time.sleep(0.05)
 
 def run_servers():
@@ -266,7 +278,8 @@ def run_servers():
     asyncio.set_event_loop(server_loop)
 
     try:
-        server_loop.run_until_complete(asyncio.gather(start_controller(), start_display()))
+        server_loop.run_until_complete(
+            asyncio.gather(start_controller(), start_display()))
     finally:
         server_loop.close()
 
