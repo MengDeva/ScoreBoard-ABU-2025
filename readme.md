@@ -38,7 +38,7 @@ aYukine(Back-end)
 > ***Pause/10 Seconds*** - Pause all clock, if it is already paused then a 10 seconds countdown will start
 
 > Score can be incremented and decremented in the red and blue controller  
-> After 2, 3, 7 score is added, It will be paused automatically
+> After 2, 3, 7 score is added, It will be paused automatically  
 > If shot clock reach zero, It will be paused automatically
 
 # Game procedure
@@ -56,10 +56,10 @@ aYukine(Back-end)
 > - ***2 Point Zone*** : 2 Score
 > - ***3 Point Zone*** : 3 Score
 > - ***Dunk Shot*** : 7 Score
-> When a robot successfully perform any kind of scoring, score will be given, shot clock will be paused. After a whistle from the referee, possession change will start with 10 seconds countdown where player from both side have to set up their robot respectively on their respective side.   
-> If scoring is not achieved within 20 seconds of shot clock, the clock will be paused. After a whistle from the referee, possession change will start with 10 seconds countdown where player from both side have to set up their robot on their respective side.   
-> Players must immediately set up their robot and leave the field within 10 seconds.
-> After 10 seconds, new round begin and robot may start performing again.
+> When a robot successfully perform any kind of scoring, score will be given, shot clock will be paused. After a whistle blow from the referee, possession change will start with 10 seconds countdown where player from both side have to set up their robot respectively on their respective side.   
+> If scoring is not achieved within 20 seconds of shot clock, the clock will be paused. After a whistle blow from the referee, possession change will start with 10 seconds countdown where player from both side have to set up their robot on their respective side.   
+> Players must immediately set up their robot and leave the field within the 10 seconds.  
+> After 10 seconds, the clock will be paused until referee blow the whistle then the clock will be continued and robot can start operating.  
 
 
 ### Violation, Foul and extra score
