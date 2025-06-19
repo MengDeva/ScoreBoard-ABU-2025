@@ -81,7 +81,7 @@ async def handle_controller(websocket):
                 elif side == "b1":
                     log += f"Game Time:{math.ceil(clock)} - Round {game_round} - {rev_data['value']} Score added to {data['blue_team_name']}!\n"
                 else:
-                    data["overlay_timer"] = 0
+                    data["overlay_timer"] = 10
                     if side[0] == "r":
                         log += f"Game Time:{math.ceil(clock)} - Round {game_round} - {data['red_team_name']} scored {side[1]}!\n"
                         game_round += 1

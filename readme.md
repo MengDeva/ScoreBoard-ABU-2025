@@ -32,7 +32,7 @@ aYukine(Back-end)
 > Select team side and click ***set side*** to change just team side  
 > ***Preparing*** - 60 seconds countdown for preparing robot  
 > ***Run Time*** - Make the timer run
-> ***Shot clock +10/-10*** - add or remove 10 seconds from shot clock  
+> ***Shot clock +10/-10*** - add and remove 10 seconds from shot clock  
 > ***Reset Shot Clock*** - reset the shot clock back to 20 seconds  
 > ***Reset All*** - reset all data to starting point  
 > ***Pause/10 Seconds*** - Pause all clock, if it is already paused then a 10 seconds countdown will start
