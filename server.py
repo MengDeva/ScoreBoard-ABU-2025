@@ -43,6 +43,7 @@ data = {
     "b7": 0
 }
 
+
 def update_connections():
     if display_connected:
         print("Display Connected: Yes")
@@ -50,6 +51,7 @@ def update_connections():
     else:
         print("Display Connected: No")
         print(f"Controller Connections: {len(controller_connections)}")
+
 
 async def handle_controller(websocket):
     global controller_connections, data, start_time, timer_running, log, game_round
@@ -134,6 +136,7 @@ async def handle_controller(websocket):
         controller_connections.remove(websocket)
         update_connections()
 
+
 async def handle_display(websocket):
     global display_connected, display_ws
     display_connected = True
@@ -147,6 +150,7 @@ async def handle_display(websocket):
         display_connected = False
         update_connections()
 
+
 async def broadcast_to_displays(message):
     global display_connected
     if display_connected:
@@ -155,6 +159,7 @@ async def broadcast_to_displays(message):
         except websockets.exceptions.ConnectionClosed:
             display_connected = False
             update_connections()
+
 
 async def broadcast_to_controllers(message):
     global controller_connections
@@ -169,16 +174,19 @@ async def broadcast_to_controllers(message):
                 ws for ws in controller_connections if ws.open]
             update_connections()
 
+
 async def start_controller():
     async with websockets.serve(handle_controller, IPAddr, 2932):
         print("Controller listening on port 2932")
         await asyncio.Future()
+
 
 async def start_display():
     global display_ws
     async with websockets.serve(handle_display, IPAddr, 2931):
         print("Display server listening on port 2931")
         await asyncio.Future()
+
 
 def reset():
     global data, log
@@ -214,6 +222,7 @@ def updateFileJson():
     with open(file_path, 'w') as f:
         json.dump(data, f, indent=4)
 
+
 def log_game():
     global log
     timestamp = time.strftime("%Y-%m-%d %H-%M-%S", time.localtime())
@@ -223,6 +232,7 @@ def log_game():
         f.write(log)
         log = ""
         print(f"Game log saved to {file_path}")
+
 
 def timer():
     global timer_running, start_time, game_time, shot_clock_time, data, log, game_round
@@ -241,6 +251,9 @@ def timer():
                     timer_running = False
                     data["shot_clock"] = 0
                     log += f"Game Time:{math.ceil(clock)} - Round {game_round} - Shot Clock Over\n"
+                    # Swap sides automatically
+                    data['red_team_side'], data['blue_team_side'] = data['blue_team_side'], data['red_team_side']
+                    log += f"Game Time:{math.ceil(clock)} - Round {game_round} - Sides Changed (Auto)\n"
                     game_round += 1
 
                 elif clock <= 0:
@@ -272,6 +285,7 @@ def timer():
                 broadcast_to_displays(json.dumps(data)), server_loop)
             time.sleep(0.05)
 
+
 def run_servers():
     global server_loop
     server_loop = asyncio.new_event_loop()
@@ -282,6 +296,7 @@ def run_servers():
             asyncio.gather(start_controller(), start_display()))
     finally:
         server_loop.close()
+
 
 server_thread = threading.Thread(target=run_servers)
 timer_thread = threading.Thread(target=timer)

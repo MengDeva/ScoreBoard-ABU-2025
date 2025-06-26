@@ -8,12 +8,19 @@
 body {
   font-family: "Digital-7", Arial, sans-serif;
 }
+
+* {
+  touch-action: manipulation;
+}
+
 .normal-font {
   font-family: Arial, sans-serif;
 }
+
 .half-red-half-blue {
   background: linear-gradient(to right, red 50%, blue 50%);
 }
+
 .overlay {
   position: fixed;
   top: 0;

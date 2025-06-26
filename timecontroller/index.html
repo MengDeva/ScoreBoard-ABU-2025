@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <title>Time Controller</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -10,7 +13,7 @@
   <body>
     <section class="h-screen flex flex-col">
       <div
-        class="flex justify-between items-center w-full p-4 half-red-half-blue h-screen"
+        class="flex justify-between items-center w-full p-10 half-red-half-blue h-screen"
       >
         <div class="flex justify-between items-center w-full">
           <div class="flex-col flex">
@@ -58,7 +61,7 @@
               class="bg-white hover:bg-gray-300 text-black font-semibold py-3 px-8 rounded-full normal-font outline-white outline-solid outline text-sm"
               onclick="setSides()"
             >
-              SET TEAM SIDES
+              SWITCH SIDES
             </button>
           </div>
           <div class="flex-col flex">
@@ -101,19 +104,19 @@
         class="flex items-center w-full p-10 half-red-half-blue h-screen text-xl gap-6 justify-center relative"
       >
         <button
-          class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-gray-200"
+          class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-gray-200"
           onclick="singleButton('prepare')"
         >
           Prepare
         </button>
         <button
-          class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-gray-200"
+          class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-gray-200"
           onclick="singleButton('pause')"
         >
           Pause / 10Seconds
         </button>
         <button
-          class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-gray-200"
+          class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-gray-200"
           onclick="singleButton('start')"
         >
           Run Time
@@ -122,15 +125,15 @@
       <div
         class="flex items-center w-full p-10 half-red-half-blue h-screen text-xl gap-6 justify-center relative"
       >
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-6 items-center justify-center">
           <button
-            class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-gray-200"
+            class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-gray-200"
             onclick="singleButton('resetAll')"
           >
             Reset All
           </button>
           <button
-            class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-gray-200"
+            class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-gray-200"
             onclick="singleButton('reset')"
           >
             Reset Shot Clock
@@ -139,13 +142,13 @@
 
         <div class="flex flex-col gap-6">
           <button
-            class="bg-green-500 hover:bg-green-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-gray-200"
+            class="bg-green-500 hover:bg-green-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-gray-200"
             onclick="singleButton('add10sec')"
           >
             Shot Clock +10
           </button>
           <button
-            class="bg-red-500 hover:bg-red-500 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-white"
+            class="bg-red-500 hover:bg-red-500 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-white"
             onclick="singleButton('sub10sec')"
           >
             Shot Clock -10
@@ -153,13 +156,13 @@
         </div>
         <div class="flex flex-col gap-6">
           <button
-            class="bg-green-500 hover:bg-green-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-white"
+            class="bg-green-500 hover:bg-green-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-white"
             onclick="singleButton('add1sec')"
           >
             Shot Clock +1
           </button>
           <button
-            class="bg-red-500 hover:bg-red-500 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] hover:text-white"
+            class="bg-red-500 hover:bg-red-500 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-white"
             onclick="singleButton('sub1sec')"
           >
             Shot Clock -1
