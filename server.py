@@ -252,9 +252,9 @@ def timer():
                     data["shot_clock"] = 0
                     log += f"Game Time:{math.ceil(clock)} - Round {game_round} - Shot Clock Over\n"
                     # Swap sides automatically
-                    # data['red_team_side'], data['blue_team_side'] = data['blue_team_side'], data['red_team_side']
-                    # log += f"Game Time:{math.ceil(clock)} - Round {game_round} - Sides Changed (Auto)\n"
-                    # game_round += 1
+                    data['red_team_side'], data['blue_team_side'] = data['blue_team_side'], data['red_team_side']
+                    log += f"Game Time:{math.ceil(clock)} - Round {game_round} - Sides Changed (Auto)\n"
+                    game_round += 1
 
                 elif clock <= 0:
                     total_red = data["r1"] + 2*data["r2"] + \
