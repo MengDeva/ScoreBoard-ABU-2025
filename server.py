@@ -241,10 +241,6 @@ def timer():
         if timer_running:
             elapsed_time = time.monotonic() - start_time
             clock = data["game_clock"]
-<<<<<<< HEAD
-=======
-
->>>>>>> 511c7ba4d3eded16e07f03468896ed6f959e7249
             if data["overlay_timer"] > 0:
                 data["overlay_timer"] -= elapsed_time
                 if data["overlay_timer"] <= 0:
@@ -255,7 +251,7 @@ def timer():
                     timer_running = False
                     data["shot_clock"] = 0
                     log += f"Game Time:{math.ceil(clock)} - Round {game_round} - Shot Clock Over\n"
-                    # # Swap sides automatically
+                    # Swap sides automatically
                     # data['red_team_side'], data['blue_team_side'] = data['blue_team_side'], data['red_team_side']
                     # log += f"Game Time:{math.ceil(clock)} - Round {game_round} - Sides Changed (Auto)\n"
                     # game_round += 1
