@@ -7,12 +7,9 @@ aYukine(Back-end)
 
 
 # Content subject to change
-<<<<<<< HEAD
-=======
 
 ## 19/06/2025 Update
 
->>>>>>> 511c7ba4d3eded16e07f03468896ed6f959e7249
 # Starting the program
 ### 1. Make sure you have installed all neccessary module by running the following command:
 > pip install requirement.txt

@@ -42,10 +42,16 @@ function setTeams() {
 
 function setSides() {
   command = "setSides";
-  const redTeamSide = document.getElementById("redTeamSideSelect").value;
-  const blueTeamSide = document.getElementById("blueTeamSideSelect").value;
-
-  const data = { command, redTeamSide, blueTeamSide };
+  const redTeamSide = document.getElementById("redTeamSideSelect");
+  const blueTeamSide = document.getElementById("blueTeamSideSelect");
+  redTeamSide.value = redTeamSide.value === "DEFENSIVE" ? "OFFENSIVE" : "DEFENSIVE";
+  blueTeamSide.value = blueTeamSide.value === "OFFENSIVE" ? "DEFENSIVE" : "OFFENSIVE";
+  const data = { 
+    command, 
+    redTeamSide: redTeamSide.value,
+    blueTeamSide: blueTeamSide.value 
+  };
+  
   sendDataToServer(data);
 }
 
