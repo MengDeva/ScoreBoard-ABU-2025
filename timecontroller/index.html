@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <title>Time Controller</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -10,12 +13,12 @@
   <body>
     <section class="h-screen flex flex-col">
       <div
-        class="flex justify-between items-center w-full p-8 half-red-half-blue h-screen"
+        class="flex justify-between items-center w-full p-10 half-red-half-blue h-screen"
       >
         <div class="flex justify-between items-center w-full">
           <div class="flex-col flex">
             <form class="flex items-center gap-1 p-2">
-              <label class="block text-3xl font-medium text-white w-[300px]"
+              <label class="block text-2xl font-medium text-white w-[300px]"
                 >Select a Team</label
               >
               <select
@@ -23,16 +26,27 @@
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 normal-font"
               >
                 <option selected>Choose a Team</option>
+<<<<<<< HEAD
                 <option >ITC 01</option>
                 <option >ITC 02</option>
                 <option >NPIC 01</option>
                 <option >NPIC 02</option>
                 <option >CADT 01</option>
                 <option >CADT 02</option>
+=======
+                <option>ITC 01</option>
+                <option>ITC 02</option>
+                <option>NPIC 01</option>
+                <option>NPIC 02</option>
+                <option>NTTI 01</option>
+                <option>NUM 01</option>
+                <option>NUM 02</option>
+                <option>PPI 01</option>
+>>>>>>> 511c7ba4d3eded16e07f03468896ed6f959e7249
               </select>
             </form>
             <form class="flex items-center gap-1 p-2">
-              <label class="block text-3xl font-medium text-white w-[300px]"
+              <label class="block text-2xl font-medium text-white w-[300px]"
                 >Select a Sides</label
               >
               <select
@@ -45,24 +59,23 @@
               </select>
             </form>
           </div>
-          <div class="flex-col flex">
+          <div class="flex-col flex items-center justify-center gap-3">
             <button
-              class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-white outline-solid outline mb-3"
+              class="bg-white hover:bg-gray-300 text-black font-semibold py-3 px-8 rounded-full normal-font outline-white outline-solid outline text-sm"
               onclick="setTeams()"
             >
               SET TEAM
             </button>
             <button
-              class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-white outline-solid outline"
+              class="bg-white hover:bg-gray-300 text-black font-semibold py-3 px-8 rounded-full normal-font outline-white outline-solid outline text-sm"
               onclick="setSides()"
             >
-              SET TEAM SIDES
+              SWITCH SIDES
             </button>
           </div>
-
           <div class="flex-col flex">
             <form class="flex items-center gap-1 p-2">
-              <label class="block text-3xl font-medium text-white w-[300px]"
+              <label class="block text-2xl font-medium text-white w-[300px]"
                 >Select a Team</label
               >
               <select
@@ -70,16 +83,27 @@
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 normal-font"
               >
                 <option selected>Choose a Team</option>
+<<<<<<< HEAD
                 <option >ITC 01</option>
                 <option >ITC 02</option>
                 <option >NPIC 01</option>
                 <option >NPIC 02</option>
                 <option >CADT 01</option>
                 <option >CADT 02</option>
+=======
+                <option>ITC 01</option>
+                <option>ITC 02</option>
+                <option>NPIC 01</option>
+                <option>NPIC 02</option>
+                <option>NTTI 01</option>
+                <option>NUM 01</option>
+                <option>NUM 02</option>
+                <option>PPI 01</option>
+>>>>>>> 511c7ba4d3eded16e07f03468896ed6f959e7249
               </select>
             </form>
             <form class="flex items-center gap-1 p-2">
-              <label class="block text-3xl font-medium text-white w-[300px]"
+              <label class="block text-2xl font-medium text-white w-[300px]"
                 >Select a Sides</label
               >
               <select
@@ -95,30 +119,45 @@
         </div>
       </div>
       <div
-        class="flex items-center w-full p-10 half-red-half-blue h-screen text-4xl gap-6 justify-center"
+        class="flex items-center w-full p-10 half-red-half-blue h-screen text-xl gap-6 justify-center relative"
       >
         <button
+<<<<<<< HEAD
           class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-solid outline-white outline w-[300px]"
+=======
+          class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-gray-200"
+>>>>>>> 511c7ba4d3eded16e07f03468896ed6f959e7249
           onclick="singleButton('prepare')"
         >
           Prepare
         </button>
         <button
+<<<<<<< HEAD
           class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-solid outline-white outline w-[300px]"
           onclick="singleButton('start')"
+=======
+          class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-gray-200"
+          onclick="singleButton('pause')"
+>>>>>>> 511c7ba4d3eded16e07f03468896ed6f959e7249
         >
-          Start Game
+          Pause / 10Seconds
         </button>
         <button
+<<<<<<< HEAD
           class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-solid outline-white outline w-[300px]"
           onclick="singleButton('p_change')"
+=======
+          class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-gray-200"
+          onclick="singleButton('start')"
+>>>>>>> 511c7ba4d3eded16e07f03468896ed6f959e7249
         >
-          Posession Change
+          Run Time
         </button>
       </div>
       <div
-        class="flex items-center w-full p-10 half-red-half-blue h-screen text-4xl gap-6 justify-center"
+        class="flex items-center w-full p-10 half-red-half-blue h-screen text-xl gap-6 justify-center relative"
       >
+<<<<<<< HEAD
         <button
           class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full normal-font outline-solid outline-white outline w-[300px]"
           onclick="singleButton('reset')"  
@@ -137,7 +176,58 @@
         >
           Pause/Resume
         </button>
+=======
+        <div class="flex flex-col gap-6 items-center justify-center">
+          <button
+            class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-gray-200"
+            onclick="singleButton('resetAll')"
+          >
+            Reset All
+          </button>
+          <button
+            class="bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-gray-200"
+            onclick="singleButton('reset')"
+          >
+            Reset Shot Clock
+          </button>
+        </div>
+
+        <div class="flex flex-col gap-6">
+          <button
+            class="bg-green-500 hover:bg-green-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-gray-200"
+            onclick="singleButton('add10sec')"
+          >
+            Shot Clock +10
+          </button>
+          <button
+            class="bg-red-500 hover:bg-red-500 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-white"
+            onclick="singleButton('sub10sec')"
+          >
+            Shot Clock -10
+          </button>
+        </div>
+        <div class="flex flex-col gap-6">
+          <button
+            class="bg-green-500 hover:bg-green-400 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-white"
+            onclick="singleButton('add1sec')"
+          >
+            Shot Clock +1
+          </button>
+          <button
+            class="bg-red-500 hover:bg-red-500 text-black font-bold py-4 px-8 rounded-full normal-font outline-solid outline-white outline w-[360px] md:w-[300px] xl:w-[360px] hover:text-white"
+            onclick="singleButton('sub1sec')"
+          >
+            Shot Clock -1
+          </button>
+        </div>
+>>>>>>> 511c7ba4d3eded16e07f03468896ed6f959e7249
       </div>
+      <div
+        class="flex items-center w-full p-10 half-red-half-blue h-screen text-2xl gap-6 justify-center"
+      ></div>
+      <div
+        class="flex items-center w-full p-10 half-red-half-blue h-screen text-2xl gap-6 justify-center"
+      ></div>
     </section>
     <script src="script.js"></script>
   </body>
