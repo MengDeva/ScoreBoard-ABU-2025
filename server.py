@@ -246,9 +246,10 @@ def log_game():
 def timer():
     global timer_running, start_time, game_time, shot_clock_time, data, log, game_round
     while True:
+
         if timer_running:
             elapsed_time = time.monotonic() - start_time
-            
+            clock = data["game_clock"]
             if data["overlay_timer"] > 0:
                 data["overlay_timer"] -= elapsed_time
                 if data["overlay_timer"] <= 0 and data["overlay_message"] == "Prepare Time":
