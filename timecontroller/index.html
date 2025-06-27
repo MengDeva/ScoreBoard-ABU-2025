@@ -11,14 +11,23 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <section class="h-screen flex flex-col">
+    <section class="h-screen flex flex-col justify-center">
+      <div
+        class="flex items-center w-full pt-10 half-red-half-blue h-screen justify-center"
+      >
+        <h2
+          class="text-8xl bg-white py-5 px-5 rounded-xl border-2 border-black"
+        >
+          Controller
+        </h2>
+      </div>
       <div
         class="flex justify-between items-center w-full p-10 half-red-half-blue h-screen"
       >
         <div class="flex justify-between items-center w-full">
           <div class="flex-col flex">
             <form class="flex items-center gap-1 p-2">
-              <label class="block text-2xl font-medium text-white w-[300px]"
+              <label class="block text-3xl font-medium text-white w-[330px]"
                 >Select a Team</label
               >
               <select
@@ -37,7 +46,7 @@
               </select>
             </form>
             <form class="flex items-center gap-1 p-2">
-              <label class="block text-2xl font-medium text-white w-[300px]"
+              <label class="block text-3xl font-medium text-white w-[330px]"
                 >Select a Sides</label
               >
               <select
@@ -52,13 +61,13 @@
           </div>
           <div class="flex-col flex items-center justify-center gap-3">
             <button
-              class="bg-white hover:bg-gray-300 text-black font-semibold py-3 px-8 rounded-full normal-font outline-white outline-solid outline text-sm"
+              class="bg-white hover:bg-gray-300 text-black font-semibold py-3 px-8 rounded-full normal-font outline-black outline-solid outline text-md"
               onclick="setTeams()"
             >
               SET TEAM
             </button>
             <button
-              class="bg-white hover:bg-gray-300 text-black font-semibold py-3 px-8 rounded-full normal-font outline-white outline-solid outline text-sm"
+              class="bg-white hover:bg-gray-300 text-black font-semibold py-3 px-8 rounded-full normal-font outline-black outline-solid outline text-md"
               onclick="setSides()"
             >
               SWITCH SIDES
@@ -66,9 +75,6 @@
           </div>
           <div class="flex-col flex">
             <form class="flex items-center gap-1 p-2">
-              <label class="block text-2xl font-medium text-white w-[300px]"
-                >Select a Team</label
-              >
               <select
                 id="blueTeamSelect"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 normal-font"
@@ -83,11 +89,12 @@
                 <option>NUM 02</option>
                 <option>PPI 01</option>
               </select>
+              <label
+                class="text-3xl font-medium text-white w-[330px] justify-end flex"
+                >Select a Team</label
+              >
             </form>
             <form class="flex items-center gap-1 p-2">
-              <label class="block text-2xl font-medium text-white w-[300px]"
-                >Select a Sides</label
-              >
               <select
                 id="blueTeamSideSelect"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 normal-font"
@@ -96,6 +103,10 @@
                 <option>OFFENSIVE</option>
                 <option>DEFENSIVE</option>
               </select>
+              <label
+                class="text-3xl font-medium text-white w-[330px] justify-end flex"
+                >Select a Sides</label
+              >
             </form>
           </div>
         </div>
