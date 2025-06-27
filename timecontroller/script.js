@@ -15,10 +15,10 @@ ws.onerror = (error) => {
 ws.onmessage = (event) => {
   const message = JSON.parse(event.data);
   console.log("Received message:", message);
-  if(message.command=="changeSide"){
-    changeSide(message)
+  if (message.command == "changeSide") {
+    changeSide(message);
   }
-}
+};
 
 function sendDataToServer(data) {
   if (ws.readyState === WebSocket.OPEN) {
@@ -36,7 +36,13 @@ function setTeams() {
   const redTeamSide = document.getElementById("redTeamSideSelect").value;
   const blueTeamSide = document.getElementById("blueTeamSideSelect").value;
 
-  const data = { command, redTeamName, blueTeamName, redTeamSide, blueTeamSide };
+  const data = {
+    command,
+    redTeamName,
+    blueTeamName,
+    redTeamSide,
+    blueTeamSide,
+  };
   sendDataToServer(data);
 }
 
@@ -44,23 +50,38 @@ function setSides() {
   command = "setSides";
   const redTeamSide = document.getElementById("redTeamSideSelect");
   const blueTeamSide = document.getElementById("blueTeamSideSelect");
-  redTeamSide.value = redTeamSide.value === "DEFENSIVE" ? "OFFENSIVE" : "DEFENSIVE";
-  blueTeamSide.value = blueTeamSide.value === "OFFENSIVE" ? "DEFENSIVE" : "OFFENSIVE";
-  const data = { 
-    command, 
+  redTeamSide.value =
+    redTeamSide.value === "DEFENSIVE" ? "OFFENSIVE" : "DEFENSIVE";
+  blueTeamSide.value =
+    blueTeamSide.value === "OFFENSIVE" ? "DEFENSIVE" : "OFFENSIVE";
+
+  // Highlight where OFFENSIVE stayed
+  if (redTeamSide.value === "OFFENSIVE") {
+    redTeamSide.style.backgroundColor = "#ffe082"; // light yellow
+  } else {
+    redTeamSide.style.backgroundColor = "";
+  }
+  if (blueTeamSide.value === "OFFENSIVE") {
+    blueTeamSide.style.backgroundColor = "#ffe082";
+  } else {
+    blueTeamSide.style.backgroundColor = "";
+  }
+
+  const data = {
+    command,
     redTeamSide: redTeamSide.value,
-    blueTeamSide: blueTeamSide.value 
+    blueTeamSide: blueTeamSide.value,
   };
-  
+
   sendDataToServer(data);
 }
 
-function singleButton(command){
+function singleButton(command) {
   const data = { command };
   sendDataToServer(data);
 }
 
-function changeSide(data){
+function changeSide(data) {
   document.getElementById("redTeamSideSelect").value = data.redTeamSide;
   document.getElementById("blueTeamSideSelect").value = data.blueTeamSide;
 }
